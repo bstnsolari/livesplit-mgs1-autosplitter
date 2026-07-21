@@ -52,11 +52,9 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection
   * Click the button for `Build Split File for current settings`, to open the split file builder.
   * Change any of the settings if needed, click `Save To Folder`, and select the target folder.
 * Split files will be created for the following categories:
-  * Any% (PC)
-  * All Bosses (PC)
-  * Glitchless (PC)
-  * Any% (Console)
-  * All Bosses (Console)
+  * Any%
+  * All Bosses
+  * Glitchless
 
 # ASL Var Viewer ("Variables") Support
 * MGS Autosplitter provides a set of data variables about the game and run, that you can add to your LiveSplit layout.
