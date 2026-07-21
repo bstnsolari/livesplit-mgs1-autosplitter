@@ -2,8 +2,8 @@
 A LiveSplit autosplitter for Metal Gear Solid on Master Collection
 
 ⚠ This is version 3 of the autosplitter. 
-[Click here for version 1 (pre-May 2021).](https://github.com/bmn/livesplit_asl_mgs1/tree/v1)
-[Click here for version 2 (post-Oct 2023).](https://github.com/bmn/livesplit_asl_mgs1)
+* [Click here for version 1 (pre-May 2021).](https://github.com/bmn/livesplit_asl_mgs1/tree/v1)
+* [Click here for version 2 (post-Oct 2023).](https://github.com/bmn/livesplit_asl_mgs1)
 
 ⚠ **Do not** use a *Scriptable Auto Splitter* and an activated *Splits Editor autosplitter* at the same time - this will cause repeated splits.
 
@@ -21,6 +21,9 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection
 * Metal Gear Solid (German)
 * Metal Gear Solid (Spanish)
 * Metal Gear Solid Integral
+
+# **Note**
+* Launch **Metal Gear Solid** before opening **LiveSplit**. The autosplitter can detect the game after LiveSplit is already running, but this may take several minutes.
 
 # Getting Started
 
