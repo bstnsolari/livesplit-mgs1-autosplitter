@@ -1,5 +1,5 @@
 # LiveSplit MGS1 Autosplitter
-A LiveSplit autosplitter for Metal Gear Solid on Master Collection
+A LiveSplit autosplitter for Metal Gear Solid on Master Collection and Emulators.
 
 ⚠ This is version 3 of the autosplitter. 
 * [Click here for version 1 (pre-May 2021).](https://github.com/bmn/livesplit_asl_mgs1/tree/v1)
@@ -16,14 +16,14 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection
 * Initial Metal Gear Solid Master Collection 3.0.0 compatibility update by **Knowlesy92** (v3.0)
 
 # Versions Supported
-* Metal Gear Solid (Japanese)
-* Metal Gear Solid (English US)
-* Metal Gear Solid (German)
-* Metal Gear Solid (Spanish)
-* Metal Gear Solid Integral
+* Metal Gear Solid (Japanese) (Master Collection and Emulator)
+* Metal Gear Solid (English US) (Master Collection and Emulator)
+* Metal Gear Solid (German) (Master Collection only)
+* Metal Gear Solid (Spanish) (Master Collection and Emulator)
+* Metal Gear Solid Integral (Master Collection and Emulator)
 
 # **Note**
-* Launch **Metal Gear Solid** before opening **LiveSplit**. The autosplitter can detect the game after LiveSplit is already running, but this may take several minutes.
+* Launch **Metal Gear Solid** before opening **LiveSplit** if you're going to speedrun on Master Collection. The autosplitter can detect the game after LiveSplit is already running, but this may take several minutes.
 
 # Getting Started
 
@@ -95,8 +95,10 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection
     * Countdown timer for O2 when in water/gas
     * Countdown timer for Diazepam
     * Countdown timer for the elevator in Dock
+    * Countdown timer for the PAL Key temperature change (testing only; see testing/README)
   * `Location`: The name of the area you're currently in.
   * `Platform`: The name of the emulator currently in use, or `PC` if using the PC version of the game.
   * `Stats`: A single line showing every game stat (e.g. Alerts) that is 1 or higher.
   * `Version`: The name of the current version of Metal Gear Solid.
+  * `Weapons`: Displays the current weapon inventory (testing only; see testing/README).
   
