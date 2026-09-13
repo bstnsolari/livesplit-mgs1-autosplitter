@@ -1,5 +1,5 @@
 # LiveSplit MGS1 Autosplitter
-A LiveSplit autosplitter for Metal Gear Solid on Master Collection and Emulators.
+A LiveSplit autosplitter for Metal Gear Solid on Master Collection, Emulators and PC Port.
 
 ⚠ This is version 3 of the autosplitter. 
 * [Click here for version 1 (pre-May 2021).](https://github.com/bmn/livesplit_asl_mgs1/tree/v1)
@@ -20,7 +20,7 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection and Emulators
 * Metal Gear Solid (English US) (Master Collection and Emulator)
 * Metal Gear Solid (German) (Master Collection only)
 * Metal Gear Solid (Spanish) (Master Collection and Emulator)
-* Metal Gear Solid Integral (Master Collection and Emulator)
+* Metal Gear Solid Integral (Master Collection, Emulator and PC)
 
 # **Note**
 * Launch **Metal Gear Solid** before opening **LiveSplit** if you're going to speedrun on Master Collection. The autosplitter can detect the game after LiveSplit is already running, but this may take several minutes.
