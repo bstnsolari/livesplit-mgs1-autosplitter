@@ -66,6 +66,7 @@ startup {
 
   // Initial Variable values
   V.ExceptionCount = new Dictionary<string, int>();
+  V.UnmappedSharedMemWatchers = new HashSet<string>(); // names already warned about by F.UpdateFromSharedMemory
   V.AllSettings = new HashSet<string>();
   V.DefaultSettings = new Dictionary<string, bool>();
   V.DefaultParentSettings = new Dictionary<string, bool>();
@@ -941,6 +942,7 @@ startup {
     G.WatcherAddresses = new Dictionary<string, long>();
     G.BossHPAddresses = null;
     G.BossMaxHPAddresses = null;
+    V.UnmappedSharedMemWatchers.Clear();
     F.ResetMemoryVars();
   });
   
@@ -1025,6 +1027,26 @@ startup {
     return IntPtr.Add(G.BaseAddress, offset);
   });
 
+  // CONTRACT: every MemoryWatcher/StringWatcher added to M, G.CurrentMemoryWatchers,
+  // G.HiddenMemoryWatchers, or any list inside G.CodeMemoryWatchers, is looked up here
+  // BY ITS .Name STRING against G.WatcherAddresses (see F.UpdateFromSharedMemory below).
+  //
+  // For most watchers this "just works" because they're created as
+  //   new MemoryWatcher<T>(F.Addr(addrs["Foo"])) { Name = "Foo" }
+  // i.e. Name == the key used to build the address, and G.WatcherAddresses is bulk-filled
+  // from `addrs` (the PSXAddresses table) at game-detection time (F.ScanForGameInEmulator).
+  //
+  // If you ever give a watcher a Name that DOESN'T match its addrs[] key -- e.g. reusing a
+  // generic label like "BossHP"/"BossPhase" for several different underlying addresses, or
+  // computing an address with an offset like addrs["X"] + N under a different Name -- you
+  // MUST also register that Name in G.WatcherAddresses yourself (see the BossHP/BossMaxHP/
+  // Hours/Minutes/Seconds/BossPhase patches in F.ScanForGameInEmulator and F.SetStateCodes).
+  // Forgetting this does NOT throw or fail loudly: direct process-memory mode (M.UpdateAll)
+  // ignores G.WatcherAddresses entirely and works fine regardless, so the bug is completely
+  // invisible until someone runs specifically in DuckStation shared-memory mode -- the exact
+  // watcher just silently freezes at whatever value it last had (or its C# default), and
+  // .Changed permanently reads false. This is what happened with Hours/Minutes/Seconds and
+  // BossPhase -- see the warning logged below if it ever happens again.
   F.UpdateFromSharedMemory = (Action)(() => {
     var acc = G.SharedMemoryAccessor;
     var bindFlags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
@@ -1044,6 +1066,12 @@ startup {
       try {
         wname = (string)w.Name;
         long addr = G.WatcherAddresses.ContainsKey(wname) ? G.WatcherAddresses[wname] : -1;
+        // Loudly flag (once per name) any watcher we have no address for, instead of
+        // silently freezing it forever. If this ever prints, go add the missing
+        // G.WatcherAddresses["<name>"] = ... registration -- see the CONTRACT comment above.
+        if (addr < 0 && V.UnmappedSharedMemWatchers.Add(wname))
+          F.Debug("WARNING: watcher '" + wname + "' has no G.WatcherAddresses entry; " +
+            "it will never update under DuckStation shared memory. See F.UpdateFromSharedMemory CONTRACT comment.");
         if (addr < 0 || addr >= acc.Capacity) continue;
         var fiCurrent = FindField(wObj, "<Current>k__BackingField");
         var fiOld     = FindField(wObj, "<Old>k__BackingField");
@@ -2891,8 +2919,21 @@ init {
                 { "CP-257", (long)addrs["RexMaxHP"] },
               };
             }
+
+          // Alias registration required by the shared-memory CONTRACT documented on
+          // F.UpdateFromSharedMemory (top of startup). "Hours"/"Minutes"/"Seconds"
+          // (used by CP-294's final-split check) and "BossPhase" (Liquid fight only,
+          // = addrs["LiquidHP"] - 0x2C) are given custom Names above that don't match
+          // any addrs[] key, so the bulk foreach a few lines up can't find them.
+          // Was missing until 2026-09; symptom was CP-294 never auto-splitting even
+          // though GameTime kept ticking, because h/m/s.Changed stayed false forever.
+          G.WatcherAddresses["Hours"] = (long)addrs["ScoreHours"];
+          G.WatcherAddresses["Minutes"] = (long)addrs["ScoreHours"] + 4;
+          G.WatcherAddresses["Seconds"] = (long)addrs["ScoreHours"] + 8;
+          if (addrs.ContainsKey("LiquidHP"))
+            G.WatcherAddresses["BossPhase"] = (long)addrs["LiquidHP"] - 0x2C;  
           }
-          
+
         }
         
         F.ResetMemoryVars();

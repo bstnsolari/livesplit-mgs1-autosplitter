@@ -22,8 +22,58 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection, Emulators an
 * Metal Gear Solid (Spanish) (Master Collection and Emulator)
 * Metal Gear Solid Integral (Master Collection, Emulator and PC)
 
+# Tested Runs
+* The following runs have been completed as part of testing the autosplitter.
+
+* Difficulty: XX = No Difficulty (Japanese version). VE = Very Easy, EZ = Easy, NM = Normal, HD = Hard, EX = Extreme.
+* Resolutions (Master Collection): OR = Original Resolution. HR = High Resolution. MR = Max Resolution.
+
+## Master Collection
+| Category | MGS Version | Difficulty | Platform | Resolution |
+| :--- | :--- | :---: | :---: | :---: |
+| Any% | Integral | VE | Steam (Windows) | HR |
+| Any% | Integral | EZ | Steam (Windows) | HR |
+| Any% | Integral | NM | Steam (Windows) | HR |
+| Any% | Integral | HD | Steam (Windows) | HR |
+| Any% | English (US) | HD | Steam (Windows) | HR |
+| All Bosses | Integral | EZ | Steam (Windows) | HR |
+| All Bosses | Integral | NM | Steam (Windows) | HR |
+| Glitchless | Integral | VE | Steam (Windows) | HR |
+| Glitchless | Integral | EZ | Steam (Windows) | HR |
+| Glitchless | Integral | NM | Steam (Windows) | HR |
+| Glitchless | Spain | EX | Steam (Windows) | HR |
+| All Bosses | Japanese | XX | Steam (Windows) | HR |
+| Glitchless | Japanese | XX | Steam (Windows) | HR |
+
+## Emulator
+| Category | MGS Version | Difficulty | Emulator |
+| :--- | :---: | :---: | :--- |
+| Any% | Integral | VE | Duckstation 0.1-8971-g8d80ae123 (dev) |
+| Any% | Integral | EZ | Duckstation 0.1-4423-g32ab7c13 (dev) |
+| All Bosses | Integral | VE | Duckstation 0.1-4202-gda9c4c11 (dev) |
+| All Bosses | Integral | EZ | Duckstation 0.1-4423-g32ab7c13 (dev) |
+| All Bosses | Integral | NM | Duckstation 0.1-4423-g32ab7c13 (dev) |
+| Glitchless | Integral | HD | Duckstation 0.1-4423-g32ab7c13 (dev) |
+| Any% | Japanese | XX | Duckstation 0.1-10903-g395dc0761 (dev) |
+| All Bosses | Japanese | XX | Duckstation 0.1-10903-g395dc0761 (dev) |
+
+## PC Integral (GOG Version)
+| Category | Difficulty |
+| :--- | :---: |
+| Any% | EZ |
+| All Bosses | EZ |
+| Glitchless | EZ |
+
 # **Note**
-* Launch **Metal Gear Solid** before opening **LiveSplit** if you're going to speedrun on Master Collection. The autosplitter can detect the game after LiveSplit is already running, but this may take several minutes.
+**Master Collection**
+* Launch Metal Gear Solid first and select the version you want to play. Then open LiveSplit. The autosplitter can detect the game if LiveSplit is already running, but detection may take several minutes. 
+
+**Emulator (DuckStation)**
+* If you're using a modern version of DuckStation, such as 0.1-10903-g395dc0761 or 0.1-8971-g8d80ae123, go to Settings → Advanced → Tweaks/Hacks and enable Enable Shared Memory. Otherwise, LiveSplit may not connect to the emulator.
+* Older versions, such as 0.1-4423-g32ab7c13 or 0.1-4202-gda9c4c11 do not have this requirement.
+
+**PC Integral (GOG)**
+* The PC port may occasionally fail to return the correct game time on the score screen. This is a behavior of the PC port itself.
 
 # Getting Started
 

@@ -66,6 +66,7 @@ startup {
 
   // Initial Variable values
   V.ExceptionCount = new Dictionary<string, int>();
+  V.UnmappedSharedMemWatchers = new HashSet<string>(); // names already warned about by F.UpdateFromSharedMemory
   V.AllSettings = new HashSet<string>();
   V.DefaultSettings = new Dictionary<string, bool>();
   V.DefaultParentSettings = new Dictionary<string, bool>();
@@ -938,6 +939,7 @@ startup {
     G.WatcherAddresses = new Dictionary<string, long>();
     G.BossHPAddresses = null;
     G.BossMaxHPAddresses = null;
+    V.UnmappedSharedMemWatchers.Clear();
     F.ResetMemoryVars();
   });
   
@@ -1041,6 +1043,9 @@ startup {
       try {
         wname = (string)w.Name;
         long addr = G.WatcherAddresses.ContainsKey(wname) ? G.WatcherAddresses[wname] : -1;
+        if (addr < 0 && V.UnmappedSharedMemWatchers.Add(wname))
+          F.Debug("WARNING: watcher '" + wname + "' has no G.WatcherAddresses entry; " +
+            "it will never update under DuckStation shared memory. See F.UpdateFromSharedMemory CONTRACT comment.");
         if (addr < 0 || addr >= acc.Capacity) continue;
         var fiCurrent = FindField(wObj, "<Current>k__BackingField");
         var fiOld     = FindField(wObj, "<Old>k__BackingField");
@@ -2706,6 +2711,12 @@ init {
                 { "CP-257", (long)addrs["RexMaxHP"] },
               };
             }
+
+          G.WatcherAddresses["Hours"] = (long)addrs["ScoreHours"];
+          G.WatcherAddresses["Minutes"] = (long)addrs["ScoreHours"] + 4;
+          G.WatcherAddresses["Seconds"] = (long)addrs["ScoreHours"] + 8;
+          if (addrs.ContainsKey("LiquidHP"))
+            G.WatcherAddresses["BossPhase"] = (long)addrs["LiquidHP"] - 0x2C;  
           }
           
         }
@@ -3178,7 +3189,6 @@ init {
     G.Emulators.Add(emu);
     return true;
   }
-  
  
 
   
