@@ -58,19 +58,28 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection, Emulators an
 | All Bosses | Japanese | XX | Duckstation 0.1-10903-g395dc0761 (dev) |
 
 ## PC Integral (GOG Version)
-| Category | Difficulty |
-| :--- | :---: |
-| Any% | EZ |
-| All Bosses | EZ |
-| Glitchless | EZ |
+| Category | Difficulty | OS | Installation | Launcher | 
+| :--- | :---: | :---: | :---: | :---: |
+| Any% | EZ | Windows 11 | Minimal | 1.4.7 |
+| All Bosses | EZ | Windows 11 | Minimal | 1.4.7 |
+| Glitchless | EZ | Windows 11 | Minimal | 1.4.7 |
 
 # **Note**
 **Master Collection**
 * Launch Metal Gear Solid first and select the version you want to play. Then open LiveSplit. The autosplitter can detect the game if LiveSplit is already running, but detection may take several minutes. 
 
 **Emulator (DuckStation)**
-* If you're using a modern version of DuckStation, such as 0.1-10903-g395dc0761 or 0.1-8971-g8d80ae123, go to Settings → Advanced → Tweaks/Hacks and enable Enable Shared Memory. Otherwise, LiveSplit may not connect to the emulator.
-* Older versions, such as 0.1-4423-g32ab7c13 or 0.1-4202-gda9c4c11 do not have this requirement.
+
+* For some versions of Duckstation, you'll need to Enable Shared Memory for the autosplitter connect to the game. Go to Settings → Advanced → Tweaks/Hacks and enable Enable Shared Memory 
+
+| Duckstation | Enable Shared Memory |
+| :--- | :---: |
+| Duckstation 0.1-4202-gda9c4c11 (dev) | Not Needed |
+| Duckstation 0.1-4423-g32ab7c13 (dev) | Not Needed |
+| Duckstation 0.1-5485-gc6a57273 (dev)| Not Needed |
+| Duckstation 0.1-8971-g8d80ae123 (dev) | Needed |
+| Duckstation 0.1-10903-g395dc0761 (dev) | Needed |
+| Duckstation 0.1-11826-gfe2306b1f (dev)| Not Needed |
 
 **PC Integral (GOG)**
 * The PC port may occasionally fail to return the correct game time on the score screen. This is a behavior of the PC port itself.
