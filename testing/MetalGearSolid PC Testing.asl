@@ -1807,7 +1807,12 @@ init {
                 string color = (dir > 0) ? "Red" : "Blue";
 
                 double ratePerSecond = F.FramesPerSecond(); // 30/s NTSC, 25/s PAL
-                double remaining = Math.Abs(target - temp) / ratePerSecond;
+                // double remaining = Math.Abs(target - temp) / ratePerSecond;
+
+                // The status byte at +56 doesn't flip on the tick where the
+                // counter reaches the target - it flips on the following tick.
+                // That's one extra tick (~1s) after the raw value says 0.
+                double remaining = (Math.Abs(target - temp) / ratePerSecond) + 1.0;
 
                 display = "PAL: Yellow -> " + color + " (" + remaining.ToString("0.0") + "s)";
               }
