@@ -70,7 +70,7 @@ A LiveSplit autosplitter for Metal Gear Solid on Master Collection, Emulators an
 
 **Emulator (DuckStation)**
 
-* For some versions of Duckstation, you'll need to Enable Shared Memory for the autosplitter connect to the game. Go to Settings → Advanced → Tweaks/Hacks and enable Enable Shared Memory 
+* Some versions of DuckStation require **Enable Shared Memory** for the autosplitter to connect to the game. Go to **Settings → Advanced → Tweaks/Hacks** and enable **Enable Shared Memory** when required.
 
 | Duckstation | Enable Shared Memory |
 | :--- | :---: |
